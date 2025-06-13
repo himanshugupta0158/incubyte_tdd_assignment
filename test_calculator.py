@@ -60,3 +60,16 @@ def test_invalid_input():
     assert calc.add("1,2,a") == 3, "Expected 3 for input '1,2,a'"
     assert calc.add("?") == 0, "Expected 0 for single special symbol input"
     assert calc.add("?,?") == 0, "Expected 0 for two special symbols input"
+
+
+def test_new_lines_as_delimiters():
+    """
+    Test the StringCalculator with new lines as delimiters.
+    This should return the sum of the numbers separated by new lines.
+    """
+    calc = StringCalculator()
+    assert calc.add("1\n2\n3,4") == 10, "Expected 10 for input '1\\n2\\n3,4'"
+    assert calc.add("10\n20\n30") == 60, "Expected 60 for input '10\\n20\\n30'"
+    assert calc.add("5\n?\n7") == 12, "Expected 12 for input '5\\n?\\n7'"
+    assert calc.add("?,10\n20") == 30, "Expected 30 for input '?,10\\n20'"
+    assert calc.add("?,?\n?") == 0, "Expected 0 for input '?,?,?'"

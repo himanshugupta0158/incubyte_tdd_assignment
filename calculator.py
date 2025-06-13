@@ -15,6 +15,7 @@ class StringCalculator:
         return self.__sum_numbers(numbers)
 
     def __split_numbers(self, numbers: str):
+        numbers = numbers.replace("\n", ",")
         if "," in numbers:
             return numbers.split(",")
         return int(numbers) if numbers.isdigit() else 0
