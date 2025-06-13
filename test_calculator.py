@@ -89,3 +89,17 @@ def test_custom_delimiters():
     assert calc.add("5;?;7") == 12, "Expected 12 for input '5;?;7'"
     assert calc.add("?,10;20") == 30, "Expected 30 for input '?,10;20'"
     assert calc.add("?,?;?") == 0, "Expected 0 for input '?,?,?'"
+
+def test_negative_numbers():
+    """
+    Test the StringCalculator with negative numbers.
+    This should raise a ValueError with the appropriate message.
+    """
+    calc = StringCalculator()
+    with pytest.raises(ValueError) as exc_info:
+        calc.add("-1,-2")
+    assert str(exc_info.value) == "negative numbers not allowed -1, -2", "Expected ValueError for negative numbers"
+
+    with pytest.raises(ValueError) as exc_info:
+        calc.add("5,-3,2")
+    assert str(exc_info.value) == "negative numbers not allowed -3", "Expected ValueError for negative numbers"

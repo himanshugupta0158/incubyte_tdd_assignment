@@ -13,10 +13,14 @@ class StringCalculator:
             return 0
 
         numbers = self.__extract_numbers(numbers)
+        negatives = [num for num in numbers if int(num) < 0]
+        if negatives:
+            raise ValueError(f"negative numbers not allowed {', '.join(negatives)}")
+
         return self.__sum_numbers(numbers)
 
     def __extract_numbers(self, numbers: str):
-        return re.findall(r"\d+", numbers)
+        return re.findall(r"-?\d+", numbers)
 
     def __sum_numbers(self, numbers: list):
         total = 0
