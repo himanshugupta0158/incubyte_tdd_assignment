@@ -35,6 +35,7 @@ def test_two_numbers_input():
     assert calc.add("10,20") == 30, "Expected 30 for input '10,20'"
     assert calc.add("5,?") == 5, "Expected 5 for input '5,?'"
 
+
 def test_multiple_numbers_input():
     """
     Test the StringCalculator with multiple numbers input.
@@ -49,6 +50,7 @@ def test_multiple_numbers_input():
     assert calc.add("?,?,?") == 0, "Expected 0 for input '?,?,?'"
     nums = ",".join(["2" for i in range(10)])
     assert calc.add(nums) == 20, f"Expected 20 for input '{nums}'"
+
 
 def test_invalid_input():
     """
@@ -73,3 +75,17 @@ def test_new_lines_as_delimiters():
     assert calc.add("5\n?\n7") == 12, "Expected 12 for input '5\\n?\\n7'"
     assert calc.add("?,10\n20") == 30, "Expected 30 for input '?,10\\n20'"
     assert calc.add("?,?\n?") == 0, "Expected 0 for input '?,?,?'"
+
+
+def test_custom_delimiters():
+    """
+    Test the StringCalculator with custom delimiters.
+    This should return the sum of the numbers separated by custom delimiters.
+    """
+    calc = StringCalculator()
+    assert calc.add("//;\n1;2") == 3, "Expected 3 for input '//;\\n1;2'"
+    assert calc.add("1;2;3,4") == 10, "Expected 10 for input '1;2;3,4'"
+    assert calc.add("10;20;30") == 60, "Expected 60 for input '10;20;30'"
+    assert calc.add("5;?;7") == 12, "Expected 12 for input '5;?;7'"
+    assert calc.add("?,10;20") == 30, "Expected 30 for input '?,10;20'"
+    assert calc.add("?,?;?") == 0, "Expected 0 for input '?,?,?'"
