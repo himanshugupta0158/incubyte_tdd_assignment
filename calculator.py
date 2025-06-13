@@ -1,4 +1,6 @@
 class StringCalculator:
 
     def add(self, numbers: str):
-        return 0
+        if not numbers:
+            return 0
+        return int(numbers) if numbers.isdigit() else 0
